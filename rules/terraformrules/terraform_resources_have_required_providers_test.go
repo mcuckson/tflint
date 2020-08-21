@@ -32,7 +32,7 @@ resource "azuread_application" "example" {
 		},
 	}
 
-	rule := NewTerraformResourcesHaveRequiredProviders()
+	rule := NewTerraformResourcesHaveRequiredProvidersRule()
 
 	for _, tc := range cases {
 		tc := tc

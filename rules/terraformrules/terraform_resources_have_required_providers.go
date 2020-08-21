@@ -8,36 +8,36 @@ import (
 	"github.com/terraform-linters/tflint/tflint"
 )
 
-// TerraformResourcesHaveRequiredProviders checks whether Terraform sets version constraints for all declared resources
-type TerraformResourcesHaveRequiredProviders struct{}
+// TerraformResourcesHaveRequiredProvidersRule checks whether Terraform sets version constraints for all declared resources
+type TerraformResourcesHaveRequiredProvidersRule struct{}
 
-// NewTerraformResourcesHaveRequiredProviders returns new rule with default attributes
-func NewTerraformResourcesHaveRequiredProviders() *TerraformResourcesHaveRequiredProviders {
-	return &TerraformResourcesHaveRequiredProviders{}
+// NewTerraformResourcesHaveRequiredProvidersRule returns new rule with default attributes
+func NewTerraformResourcesHaveRequiredProvidersRule() *TerraformResourcesHaveRequiredProvidersRule {
+	return &TerraformResourcesHaveRequiredProvidersRule{}
 }
 
 // Name returns the rule name
-func (r *TerraformResourcesHaveRequiredProviders) Name() string {
+func (r *TerraformResourcesHaveRequiredProvidersRule) Name() string {
 	return "terraform_resources_have_required_providers"
 }
 
 // Enabled returns whether the rule is enabled by default
-func (r *TerraformResourcesHaveRequiredProviders) Enabled() bool {
+func (r *TerraformResourcesHaveRequiredProvidersRule) Enabled() bool {
 	return false
 }
 
 // Severity returns the rule severity
-func (r *TerraformResourcesHaveRequiredProviders) Severity() string {
+func (r *TerraformResourcesHaveRequiredProvidersRule) Severity() string {
 	return tflint.WARNING
 }
 
 // Link returns the rule reference link
-func (r *TerraformResourcesHaveRequiredProviders) Link() string {
+func (r *TerraformResourcesHaveRequiredProvidersRule) Link() string {
 	return tflint.ReferenceLink(r.Name())
 }
 
 // Check checks whether declared resources have valid version constraints
-func (r *TerraformResourcesHaveRequiredProviders) Check(runner *tflint.Runner) error {
+func (r *TerraformResourcesHaveRequiredProvidersRule) Check(runner *tflint.Runner) error {
 	log.Printf("[TRACE] Check `%s` rule for `%s` runner", r.Name(), runner.TFConfigPath())
 
 	resources := make(map[string]hcl.Range)
