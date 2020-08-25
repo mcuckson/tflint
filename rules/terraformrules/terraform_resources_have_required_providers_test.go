@@ -40,25 +40,6 @@ resource "template_test" "example" {
 			Expected: tflint.Issues{},
 		},
 		{
-			Name: "single resource with alias",
-			Content: `
-provider "template" {
-	alias = "b"
-}
-
-terraform {
-	required_providers {
-		b = "~> 2"
-	}
-}
-
-resource "template_test" "example" {
-    provider = template.b
-}
-`,
-			Expected: tflint.Issues{},
-		},
-		{
 			Name: "no version",
 			Content: `
 terraform {
@@ -81,37 +62,6 @@ resource "template_test" "example" {
 						},
 						End: hcl.Pos{
 							Line:   7,
-							Column: 35,
-						},
-					},
-				},
-			},
-		},
-		{
-			Name: "no alias version",
-			Content: `
-terraform {
- required_providers {
-    template = "~> 2"
- }
-}
-
-resource "template_test" "example" {
-    provider = template.b
-}
-`,
-			Expected: tflint.Issues{
-				{
-					Rule:    NewTerraformResourcesHaveRequiredProvidersRule(),
-					Message: `Missing version constraint for provider "b" in "required_providers"`,
-					Range: hcl.Range{
-						Filename: "module.tf",
-						Start: hcl.Pos{
-							Line:   8,
-							Column: 1,
-						},
-						End: hcl.Pos{
-							Line:   8,
 							Column: 35,
 						},
 					},

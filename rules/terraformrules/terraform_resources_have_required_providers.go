@@ -45,11 +45,7 @@ func (r *TerraformResourcesHaveRequiredProvidersRule) Check(runner *tflint.Runne
 
 	for _, res := range module.ManagedResources {
 		if _, ok := resources[res.Provider.Type]; !ok {
-			providerName := res.Provider.Type
-			if res.ProviderConfigRef != nil {
-				providerName = res.ProviderConfigRef.Alias
-			}
-			resources[providerName] = res.DeclRange
+			resources[res.Provider.Type] = res.DeclRange
 		}
 	}
 
